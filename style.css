@@ -12,8 +12,9 @@ body {
   color: #333;
 }
 
+/* MongoDB green theme */
 header {
-  background: #004d7a;
+  background: #13aa52;
   color: #fff;
   padding: 20px 0;
 }
@@ -63,14 +64,14 @@ footer {
 }
 
 h2 {
-  color: #004d7a;
-  border-bottom: 2px solid #004d7a;
+  color: #107c41;
+  border-bottom: 2px solid #13aa52;
   padding-bottom: 5px;
   margin-top: 0;
 }
 
 h3 {
-  color: #005a92;
+  color: #0d5a29;
 }
 
 ul {
