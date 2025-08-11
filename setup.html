@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup | AI Credit Scoring Workshop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>AI Credit Scoring Workshop</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="overview.html">Overview</a>
+        <a href="setup.html">Setup</a>
+        <a href="data_models.html">Data &amp; Models</a>
+        <a href="usage.html">Usage</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h2>Setup</h2>
+    <p>
+      This section describes how to configure your environment and run the AI credit scoring
+      application locally. You will need AWS credentials, a MongoDB instance and the ability
+      to run Python and Node.js applications.
+    </p>
+    <h3>Configure AWS and Environment Variables</h3>
+    <p>
+      Install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">AWS CLI</a>
+      and authenticate if you use AWS Single Sign‑On:
+    </p>
+    <pre><code>aws sso login --profile default
+aws configure
+</code></pre>
+    <p>Set the following environment variables before starting the backend:</p>
+    <pre><code># Basic credentials
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_REGION=us-east-1
+
+# Inference profile settings (choose one of ARN or ID)
+BEDROCK_TEXT_REGION=us-west-2
+BEDROCK_TEXT_INFERENCE_PROFILE_ARN=arn:aws:bedrock:us-west-2:ACCOUNT_ID:inference-profile/my-text-profile
+BEDROCK_TEXT_INFERENCE_PROFILE_ID=ip-1234567890abcdef
+BEDROCK_EMBED_REGION=us-west-2
+BEDROCK_EMBED_INFERENCE_PROFILE_ARN=arn:aws:bedrock:us-west-2:ACCOUNT_ID:inference-profile/my-embed-profile
+
+# On‑demand model settings (omit model ID when using an inference profile)
+BEDROCK_TEXT_MODEL_ID=anthropic.claude-v2
+BEDROCK_EMBED_MODEL_ID=amazon.titan-embed-text-v1
+
+# Optional external services
+FRAUD_DETECTOR_MODEL_ARN=arn:aws:frauddetector:REGION:ACCOUNT_ID:detector/my-detector
+SAGEMAKER_ENDPOINT_NAME=my-anomaly-endpoint
+
+# Database connection
+MONGODB_URI=mongodb://localhost:27017
+</code></pre>
+    <h3>Run the Backend</h3>
+    <p>To start the API server, install dependencies and run the FastAPI app:</p>
+    <pre><code>cd backend
+# create a .env file containing the variables above
+pip install -r requirements.txt
+uvicorn main:app --reload
+</code></pre>
+    <h3>Run the Frontend</h3>
+    <p>To launch the React front‑end, run the following commands:</p>
+    <pre><code>cd frontend
+npm install
+npm run dev   # start the development server
+npm run build # create a production build
+npm start     # preview the production build
+</code></pre>
+    <p>
+      Once both services are running, open <code>http://localhost:5173/</code> in your browser to
+      interact with the application.
+    </p>
+  </main>
+  <footer>
+    <p>&copy; 2025 AI Credit Scoring Workshop. All rights reserved.</p>
+  </footer>
+</body>
+</html>

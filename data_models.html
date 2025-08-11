@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data &amp; Models | AI Credit Scoring Workshop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>AI Credit Scoring Workshop</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="overview.html">Overview</a>
+        <a href="setup.html">Setup</a>
+        <a href="data_models.html">Data &amp; Models</a>
+        <a href="usage.html">Usage</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h2>Data &amp; Models</h2>
+    <h3>Generating Synthetic Credit Data</h3>
+    <p>
+      The repository includes a Python script that generates a synthetic credit dataset with
+      required event metadata. Using the <code>faker</code> library and random sampling, the script
+      produces a CSV file with one million rows by default. Each row contains both customer features
+      and AWS Fraud Detector metadata columns. The base features include name, age, occupation,
+      annual income, monthly in‑hand salary, number of bank accounts, number of credit cards,
+      interest rate, number of loans, type of loan(s), days delayed from the due date,
+      number of delayed payments, credit mix, outstanding debt, credit utilization ratio,
+      credit history age and total EMI per month.
+    </p>
+    <h3>Rule‑Based Screening</h3>
+    <p>
+      Before calculating a score, the application evaluates each credit application against a set of
+      screening rules. The backend loads rule definitions from a JSON configuration and iterates
+      through the rules, checking each condition against the submitted form data. If a rule
+      with an action of <code>reject</code> triggers, the API returns a response indicating
+      rejection and includes the rule name and description. Otherwise, it records any flags and
+      proceeds to compute a provisional score.
+    </p>
+    <h3>Score Estimation &amp; LLM Summarization</h3>
+    <p>
+      The FastAPI endpoint calculates a provisional credit score from repayment history, credit
+      utilization, outstanding debt and the number of credit inquiries. It then constructs a prompt
+      summarizing the applicant’s financial profile and uses AWS Bedrock to generate a succinct
+      risk summary via a large language model. The summary is cleaned to remove any follow‑up
+      questions before being returned to the user.
+    </p>
+    <h3>Product Recommendations</h3>
+    <p>
+      A recommendation service employs a TF‑IDF vectorizer and cosine similarity to compare free‑text
+      user queries with a set of pre‑defined credit card products. It returns the titles and
+      descriptions of the top matching products to help applicants choose the most suitable
+      financial products.
+    </p>
+  </main>
+  <footer>
+    <p>&copy; 2025 AI Credit Scoring Workshop. All rights reserved.</p>
+  </footer>
+</body>
+</html>

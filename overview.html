@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overview | AI Credit Scoring Workshop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>AI Credit Scoring Workshop</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="overview.html">Overview</a>
+        <a href="setup.html">Setup</a>
+        <a href="data_models.html">Data &amp; Models</a>
+        <a href="usage.html">Usage</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h2>Overview</h2>
+    <p>
+      The AI credit scoring application follows a full‑stack architecture in which a React front‑end
+      collects user inputs and a FastAPI backend orchestrates scoring, summarization and anomaly
+      detection. After submitting their details, applicants receive an estimated credit score and
+      personalized feedback.
+    </p>
+    <h3>Key Features</h3>
+    <ul>
+      <li>AI‑generated credit score and detailed breakdown</li>
+      <li>Interactive user interface with sliders and tabbed navigation</li>
+      <li>LLM‑generated risk summaries and actionable suggestions</li>
+      <li>Anomaly detection via AWS Fraud Detector or Amazon SageMaker</li>
+      <li>Modular FastAPI backend with environment‑driven configuration</li>
+    </ul>
+    <h3>Architecture</h3>
+    <p>
+      The architectural diagram below illustrates how the components of the system interact. Users
+      enter their information in the front‑end, which forwards the data to the FastAPI backend.
+      The backend evaluates the data against rule‑based screening logic, computes an initial credit
+      score, calls a large language model hosted on AWS Bedrock to produce a risk summary, invokes
+      an anomaly detection service if configured, and persists the record in MongoDB.
+    </p>
+    <img src="architecture_diagram.png" alt="Architecture diagram" class="responsive">
+    <p>
+      This modular design allows the application to run locally or integrate with cloud services
+      such as AWS Bedrock, Fraud Detector, SageMaker and MongoDB Atlas.
+    </p>
+  </main>
+  <footer>
+    <p>&copy; 2025 AI Credit Scoring Workshop. All rights reserved.</p>
+  </footer>
+</body>
+</html>
