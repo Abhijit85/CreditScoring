@@ -48,6 +48,27 @@
       This modular design allows the application to run locally or integrate with cloud services
       such as AWS Bedrock, Fraud Detector, SageMaker and MongoDB Atlas.
     </p>
+
+    <h3>Credit Scoring Logic Example</h3>
+    <p>
+      The core of the scoring algorithm combines repayment history, credit utilization,
+      outstanding debt and inquiries into a single numeric score.  Below is a simplified
+      excerpt from the FastAPI endpoint showing how these values are computed:
+    </p>
+    <pre><code># Compute components for the credit score
+repayment = max(0, 30 - int(input.Num_of_Delayed_Payment) - int(input.Delay_from_due_date) // 10)
+utilization = max(0, 30 - float(input.Credit_Utilization_Ratio) // 3)
+outstanding = max(0, 30 - float(input.Outstanding_Debt) / 1000)
+inquiries = max(0, 30 - int(input.Num_Credit_Card))
+
+# Aggregate the components; cap the maximum score at 850
+credit_score = min(850, 500 + repayment + utilization + outstanding + inquiries)
+</code></pre>
+    <p>
+      Participants can experiment with these formulas by adjusting the input values and observing
+      how the score changes.  The logic is intentionally simple for learning purposes; more
+      sophisticated models could incorporate additional factors or weights.
+    </p>
   </main>
   <footer>
     <p>&copy; 2025 AI Credit Scoring Workshop. All rights reserved.</p>
